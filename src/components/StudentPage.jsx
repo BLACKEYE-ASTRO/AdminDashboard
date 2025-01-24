@@ -13,10 +13,10 @@ import DeleteIcon from "@mui/icons-material/Delete";
 const StudentsPage = () => {
   const [students, setStudents] = useState([]);
   const [showModal, setShowModal] = useState(false);
-  const [selectedStudent, setSelectedStudent] = useState(null); // State to store selected student
-  const [editModalOpen, setEditModalOpen] = useState(false); // State to manage Edit modal
-  const [showDeleteConfirmation, setShowDeleteConfirmation] = useState(false); // State to manage delete confirmation
-  const [studentToDelete, setStudentToDelete] = useState(null); // Track student to delete
+  const [selectedStudent, setSelectedStudent] = useState(null); 
+  const [editModalOpen, setEditModalOpen] = useState(false); 
+  const [showDeleteConfirmation, setShowDeleteConfirmation] = useState(false); 
+  const [studentToDelete, setStudentToDelete] = useState(null); 
 
   // Fetch the students list
   useEffect(() => {
@@ -50,8 +50,8 @@ const StudentsPage = () => {
 
   // Handle Delete Action: Set student to delete and show confirmation modal
   const handleDelete = (student) => {
-    setStudentToDelete(student); // Set the student to delete
-    setShowDeleteConfirmation(true); // Show confirmation modal
+    setStudentToDelete(student); 
+    setShowDeleteConfirmation(true); 
   };
 
   // Confirm Delete Action
@@ -60,9 +60,9 @@ const StudentsPage = () => {
       try {
         const studentDoc = doc(db, "students", studentToDelete.id);
         await deleteDoc(studentDoc);
-        setStudents(students.filter((student) => student.id !== studentToDelete.id)); // Remove from list
-        setShowDeleteConfirmation(false); // Close the confirmation modal
-        setStudentToDelete(null); // Clear the student to delete
+        setStudents(students.filter((student) => student.id !== studentToDelete.id)); 
+        setShowDeleteConfirmation(false); 
+        setStudentToDelete(null); 
       } catch (error) {
         console.error("Error deleting student:", error);
       }
@@ -71,8 +71,8 @@ const StudentsPage = () => {
 
   // Cancel Delete Action
   const cancelDelete = () => {
-    setShowDeleteConfirmation(false); // Close the confirmation modal
-    setStudentToDelete(null); // Clear the student to delete
+    setShowDeleteConfirmation(false); 
+    setStudentToDelete(null); 
   };
 
   // Handle Close Edit Modal
@@ -102,14 +102,14 @@ const StudentsPage = () => {
         {selectedStudent && !editModalOpen && (
           <ViewStudentModal
             student={selectedStudent}
-            onClose={() => setSelectedStudent(null)} // Close the modal
+            onClose={() => setSelectedStudent(null)} 
           />
         )}
         {editModalOpen && (
           <EditStudentModal
             student={selectedStudent}
             onClose={handleCloseEditModal}
-            onSuccess={() => window.location.reload()} // Reload after successful edit
+            onSuccess={() => window.location.reload()} 
           />
         )}
         <TableContainer component={Paper}>

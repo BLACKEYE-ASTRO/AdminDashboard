@@ -97,7 +97,6 @@ const AddStudentModal = ({ onClose, onSuccess }) => {
                 );
               }
 
-              // Gender radio button with title
               if (key === "gender") {
                 return (
                   <Grid item xs={12} key={key}>

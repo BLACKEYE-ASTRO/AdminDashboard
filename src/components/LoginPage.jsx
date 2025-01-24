@@ -19,7 +19,7 @@ const LoginPage = () => {
 
   const handleLogin = async () => {
     try {
-      setError(""); // Clear previous errors
+      setError(""); 
       await signInWithEmailAndPassword(auth, email, password);
       navigate("/dashboard");
     } catch (error) {

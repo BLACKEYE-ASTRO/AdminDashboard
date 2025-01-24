@@ -25,9 +25,9 @@ const EditStudentModal = ({ student, onClose, onSuccess }) => {
   const handleSave = async () => {
     try {
       const studentDoc = doc(db, "students", student.id);
-      await updateDoc(studentDoc, formData); // Update the document with the form data
-      onSuccess(); // Call onSuccess after successful update
-      onClose(); // Close the modal
+      await updateDoc(studentDoc, formData); 
+      onSuccess(); 
+      onClose(); 
     } catch (error) {
       console.error("Error updating student:", error);
     }
@@ -47,8 +47,8 @@ const EditStudentModal = ({ student, onClose, onSuccess }) => {
           boxShadow: 24,
           p: 4,
           borderRadius: 2,
-          maxHeight: "80vh", // Set max height for the modal
-          overflowY: "auto", // Enable scrolling if content exceeds maxHeight
+          maxHeight: "80vh", 
+          overflowY: "auto",
         }}
       >
         <Typography variant="h6" component="h2" gutterBottom>
