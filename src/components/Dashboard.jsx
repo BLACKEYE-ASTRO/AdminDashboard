@@ -12,17 +12,14 @@ const Dashboard = () => {
                 flexDirection: { xs: 'column', sm: 'row' },
             }}
         >
-            {/* Sidebar Component */}
-            <Sidebar />
-
-            {/* Main Content */}
+            <Sidebar />       
             <Box
                 sx={{
                     flex: 1,
                     display: 'flex',
                     justifyContent: 'center',
                     alignItems: 'center',
-                    px: 2, // Padding for better spacing
+                    px: 2, 
                 }}
             >
                 <Typography
