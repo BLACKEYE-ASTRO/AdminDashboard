@@ -1,8 +1,10 @@
 import React from "react";
 import { BrowserRouter as Router, Routes, Route, Navigate } from "react-router-dom";
 import LoginPage from "./components/LoginPage";
-import StudentPage from "./components/StudentPage";
+import Sidebar from "./components/Sidebar";
 import { AuthProvider, useAuth } from "./context/AuthContext";
+import Dashboard from "./components/Dashboard";
+import StudentPage from "./components/StudentPage";
 
 const ProtectedRoute = ({ children }) => {
   const { user, loading } = useAuth();
@@ -19,7 +21,23 @@ const App = () => {
         <Routes>
           <Route path="/" element={<LoginPage />} />
           <Route
+            path="/home"
+            element={
+              <ProtectedRoute>
+                <Sidebar />
+              </ProtectedRoute>
+            }
+          />
+          <Route
             path="/dashboard"
+            element={
+              <ProtectedRoute>
+                <Dashboard />
+              </ProtectedRoute>
+            }
+          />
+          <Route
+            path="/students"
             element={
               <ProtectedRoute>
                 <StudentPage />

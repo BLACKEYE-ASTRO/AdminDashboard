@@ -37,7 +37,7 @@ const LoginPage = () => {
 
   useEffect(() => {
     if (auth.currentUser) {
-      navigate("/dashboard");
+      navigate("/home");
     }
   }, [navigate]);
 
@@ -47,7 +47,7 @@ const LoginPage = () => {
       setLoading(true);
       await signInWithEmailAndPassword(auth, email, password);
       toast.success("Login successful!");
-      navigate("/dashboard");
+      navigate("/home");
     } catch (error) {
       setError("Invalid email or password.");
       toast.error("Failed to login. Please try again.");
@@ -62,7 +62,7 @@ const LoginPage = () => {
       setLoading(true);
       await signInWithPopup(auth, provider);
       toast.success("Login successful!");
-      navigate("/dashboard");
+      navigate("/home");
     } catch (error) {
       setError("Authentication failed. Please try again.");
       toast.error("Social login failed. Please try again.");

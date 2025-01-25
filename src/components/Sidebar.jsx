@@ -98,7 +98,7 @@ const Sidebar = () => {
           </ListItem>
           <ListItem
             button
-            onClick={() => handleNavigation("/dashboard", "students")}
+            onClick={() => handleNavigation("/students", "students")}
             sx={{
               backgroundColor: selectedItem === "students" ? "#e0f7fa" : "transparent",
               "&:hover": {
