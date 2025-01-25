@@ -25,9 +25,9 @@ const EditStudentModal = ({ student, onClose, onSuccess }) => {
   const handleSave = async () => {
     try {
       const studentDoc = doc(db, "students", student.id);
-      await updateDoc(studentDoc, formData); 
-      onSuccess(); 
-      onClose(); 
+      await updateDoc(studentDoc, formData);
+      onSuccess();
+      onClose();
     } catch (error) {
       console.error("Error updating student:", error);
     }
@@ -41,112 +41,79 @@ const EditStudentModal = ({ student, onClose, onSuccess }) => {
           top: "50%",
           left: "50%",
           transform: "translate(-50%, -50%)",
-          width: 400,
+          width: { xs: "90%", sm: "70%", md: "50%" },
+          maxHeight: "90vh",
           bgcolor: "background.paper",
           border: "2px solid #ccc",
           boxShadow: 24,
-          p: 4,
+          p: { xs: 2, sm: 4 },
           borderRadius: 2,
-          maxHeight: "80vh", 
-          overflowY: "auto",
+          overflow: "auto",
         }}
       >
-        <Typography variant="h6" component="h2" gutterBottom>
+        <Typography
+          variant="h6"
+          component="h2"
+          gutterBottom
+          sx={{ fontSize: { xs: "1.2rem", sm: "1.5rem" } }}
+        >
           Edit Student Details
         </Typography>
-        <TextField
-          fullWidth
-          label="Name"
-          name="name"
-          value={formData.name}
-          onChange={handleChange}
-          sx={{ marginBottom: 2 }}
-        />
-        <TextField
-          fullWidth
-          label="Class"
-          name="class"
-          value={formData.class}
-          onChange={handleChange}
-          sx={{ marginBottom: 2 }}
-        />
-        <TextField
-          fullWidth
-          label="Section"
-          name="section"
-          value={formData.section}
-          onChange={handleChange}
-          sx={{ marginBottom: 2 }}
-        />
-        <TextField
-          fullWidth
-          label="Roll Number"
-          name="rollNumber"
-          value={formData.rollNumber}
-          onChange={handleChange}
-          sx={{ marginBottom: 2 }}
-        />
-        <TextField
-          fullWidth
-          label="Age"
-          name="age"
-          value={formData.age}
-          onChange={handleChange}
-          sx={{ marginBottom: 2 }}
-        />
-        <TextField
-          fullWidth
-          label="Gender"
-          name="gender"
-          value={formData.gender}
-          onChange={handleChange}
-          sx={{ marginBottom: 2 }}
-        />
-        <TextField
-          fullWidth
-          label="Email"
-          name="email"
-          value={formData.email}
-          onChange={handleChange}
-          sx={{ marginBottom: 2 }}
-        />
-        <TextField
-          fullWidth
-          label="Phone"
-          name="phone"
-          value={formData.phone}
-          onChange={handleChange}
-          sx={{ marginBottom: 2 }}
-        />
-        <TextField
-          fullWidth
-          label="Address"
-          name="address"
-          value={formData.address}
-          onChange={handleChange}
-          sx={{ marginBottom: 2 }}
-        />
-        <TextField
-          fullWidth
-          label="Father's Name"
-          name="fatherName"
-          value={formData.fatherName}
-          onChange={handleChange}
-          sx={{ marginBottom: 2 }}
-        />
-        <TextField
-          fullWidth
-          label="Mother's Name"
-          name="motherName"
-          value={formData.motherName}
-          onChange={handleChange}
-          sx={{ marginBottom: 2 }}
-        />
-        <Box sx={{ mt: 2, display: "flex", justifyContent: "flex-end" }}>
-          <Button variant="outlined" color="secondary" onClick={onClose} sx={{ marginRight: 1 }}>
+        <Box
+          sx={{
+            maxHeight: "calc(90vh - 150px)",
+            overflowY: "auto",
+            pr: { xs: 1, sm: 2 },
+          }}
+        >
+          {Object.keys(formData).map((key) => (
+            <TextField
+              key={key}
+              fullWidth
+              label={key.replace(/([A-Z])/g, " $1").toUpperCase()}
+              name={key}
+              value={formData[key]}
+              onChange={handleChange}
+              variant="outlined"
+              sx={{
+                marginBottom: 2,
+                "& .MuiInputLabel-root": {
+                  fontSize: { xs: "0.9rem", sm: "1rem" },
+                },
+                "& .MuiInputBase-root": {
+                  fontSize: { xs: "0.9rem", sm: "1rem" },
+                },
+              }}
+            />
+          ))}
+        </Box>
+        <Box
+          sx={{
+            mt: 3,
+            display: "flex",
+            justifyContent: { xs: "center", sm: "flex-end" },
+            gap: 2,
+            flexWrap: "wrap",
+          }}
+        >
+          <Button
+            variant="outlined"
+            color="secondary"
+            onClick={onClose}
+            sx={{
+              width: { xs: "100%", sm: "auto" },
+            }}
+          >
             Cancel
           </Button>
-          <Button variant="contained" color="primary" onClick={handleSave}>
+          <Button
+            variant="contained"
+            color="primary"
+            onClick={handleSave}
+            sx={{
+              width: { xs: "100%", sm: "auto" },
+            }}
+          >
             Save Changes
           </Button>
         </Box>
